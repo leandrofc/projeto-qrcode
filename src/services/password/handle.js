@@ -1,24 +1,4 @@
-async function permittedCharacters() {
-    let permitted = [];
-
-    if (process.env.UPPERCASE_LETTERS === "true") {
-        permitted.push(..."ABCDEFGHIJKLMNOPQRSTUVXYZ");
-    }
-
-    if (process.env.LOWERCASE_LETTERS === "true") {
-        permitted.push(..."abcdefghijklmnopqrstuvxwyz");
-    }
-
-    if (process.env.NUMBERS === "true") {
-        permitted.push(..."0123456789");
-    }
-
-    if (process.env.SPECIAL_CHARACTERES === "true") {
-        permitted.push(..."!@#$%^&*()-_");
-    }
-
-    return permitted;
-}
+import permittedCharacters from "./utils/permitted-characters.js";
 
 async function handle() {
     let characters = [];
@@ -26,7 +6,6 @@ async function handle() {
 
     const passwordLength = process.env.PASSWORD_LENGTH;
     characters = await permittedCharacters();
-
 
     for (let i = 0; i < passwordLength; i ++) {
         const index = Math.floor(Math.random() * characters.length);
